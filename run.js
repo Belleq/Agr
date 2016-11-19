@@ -637,7 +637,7 @@ window.Singa = {
   remoteBots : {},
   remoteBotsAlive : {},
   leaderboardData : "",
-  serverBots : 50,
+  serverBots : 100,
   isAuthorized : true,
   drawMinimap : true,
   setMapCoords : function(a, b, c, d, e, f) {
