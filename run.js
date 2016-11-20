@@ -205,7 +205,6 @@ socket.on("force-uuid", function(data) {
         break;
       case "count":
         Singa.serverBots = a.count;
-        console.log(Signa.serverBots)
         break;
       case "auth":
         Singa.isAuthorized = true;
@@ -420,7 +419,7 @@ function generateBotFunction() {
     self.Singa = {
       server : null,
       botID : 0,
-      botName : "NanoBots.tk",
+      botName : "",
       playerX : 0,
       playerY : 0,
       newX : 0,
@@ -551,7 +550,7 @@ function generateBotFunction() {
           break;
         case "names":
           if (null == b.botNames) {
-            Singa.botName = "NanoBots.tk";
+            Singa.botName = "";
             break;
           }
           Singa.botName = b.botNames[getRandomInt(0, b.botNames.length - 1)];
@@ -663,7 +662,7 @@ window.Singa = {
   },
   playerSpawned : function() {
     Singa.isAlive = true;
-    changeNicknameOnBall("player_pointer", Singa.playerName);
+    changeNicknameOnBall("player_pointer", "");
     setBallVisible("player_spectate", false);
     setBallVisible("player_pointer", true);
     sendCommand({
@@ -836,9 +835,9 @@ window.Singa = {
           }, 50);
       }
     });
-    addBallToMinimap(true, "player_pointer", Singa.playerName, Singa.realPlayerX, Singa.realPlayerY, "#00FF00", false);
-    addBallToMinimap(true, "player_death", "Last Death", Singa.realPlayerX, Singa.realPlayerY, "#FF2400", false);
-    addBallToMinimap(true, "player_spectate", "Spectate", Singa.realPlayerX, Singa.realPlayerY, "#0000FF", false);
+    addBallToMinimap(true, "player_pointer", "", Singa.realPlayerX, Singa.realPlayerY, "#00FF00", false);
+    addBallToMinimap(true, "player_death", "", Singa.realPlayerX, Singa.realPlayerY, "#FF2400", false);
+    addBallToMinimap(true, "player_spectate", "", Singa.realPlayerX, Singa.realPlayerY, "#0000FF", false);
     connectToSingaServer();
     insertCore();
     setInterval(function() {
@@ -901,7 +900,7 @@ minimapBalls = {}, MinimapBall.prototype = {
       a.fillStyle = this.color;
       a.font = "10px Ubuntu";
       a.textAlign = "center";
-      a.fillText("" == this.name ? "An unnamed cell" : this.name, d, e - 10);
+      a.fillText("" == this.name ? "" : this.name, d, e - 10);
       a.beginPath();
       a.arc(d, e, 4.5, 0, 2 * Math.PI, false);
       a.closePath();
@@ -930,13 +929,13 @@ b.open("GET", "/mc/agario.js", true), b.onload = function() {
     var a = e.responseText;
     a = replaceNormalFile(a, "UCC6hurPo_LxL7C0YFYgYnIw", "UCq_b9_e_wYCP9sl4r3PWujQ");
     a = replaceRegexFile(a, /<footer[\S\s]*\/footer>/i, "");
-    a = replaceNormalFile(a, '<script src="agario.core.js" async>\x3c/script>', "<div id='botcanvas' style='background:rgba(0,0,0,0.4); width: 200px; top: 5px; left: 9px; display: block; position: absolute; text-align: center; font-size: 15px; color: #ffffff; padding: 5px; font-family: Ubuntu;'> <font color='#7FFF00'>NanoBots.tk</font><br>Minions: <a id='botCount'><font color='red'>0 / 2</font></a><br><font color='#FFFFFF'>A</font> - Move To Mouse: <a id='ismoveToMouse'><font color='#7FFF00'>On</font></a><br><font color='#FFFFFF'>P</font> - Collect Pellets: <a id='collectPellets'><font color='red'>Off</font></a><br><font color='#FFFFFF'>D</font> - Stop Movement: <a id='isStopMove'><font color='red'>Off</font></a></div>");
+    a = replaceNormalFile(a, '<script src="agario.core.js" async>\x3c/script>', "<div id='botcanvas' style='background:rgba(0,0,0,0.4); width: 200px; top: 5px; left: 9px; display: block; position: absolute; text-align: center; font-size: 15px; color: #ffffff; padding: 5px; font-family: Ubuntu;'> <font color='#7FFF00'>Bots</font><br>Minions: <a id='botCount'><font color='red'>0 / 2</font></a><br><font color='#FFFFFF'>A</font> - Move To Mouse: <a id='ismoveToMouse'><font color='#7FFF00'>On</font></a><br><font color='#FFFFFF'>P</font> - Collect Pellets: <a id='collectPellets'><font color='red'>Off</font></a><br><font color='#FFFFFF'>D</font> - Stop Movement: <a id='isStopMove'><font color='red'>Off</font></a></div>");
     a = replaceNormalFile(a, "<body>", '<body onload="Singa.loadCore()">');
     a = replaceRegexFile(a, /<script type="text\/javascript" src="mc\/agario\.js.*"><\/script>/i, "");
     a = replaceRegexFile(a, /<div id="adsBottom".*display:block;">/i, '<div id="adsBottom" style="display:none">');
     a = replaceNormalFile(a, '<div class="diep-cross" style="', '<div class="diep-cross" style="display:none;');
     a = replaceNormalFile(a, '<div id="promo-badge-container">', '<div id="promo-badge-container" style="display:none;">');
-    a = replaceNormalFile(a, '<span data-itr="page_instructions_w"></span><br/>', '<span data-itr="page_instructions_w"></span><br/><span>Press <b>Q</b> to double split</span><br><span>Hold <b>W</b> to rapid fire mass</span><br><span>Press <b>M</b> to hide/show the minimap</span><br><span>Press <b>E</b> to split bots</span><br><span>Press <b>R</b> to eject some bots mass</span><br><span>Press <b>P</b> to make bots collect pellets</span><br><span>Creator: <bold>NanoBots</bold></span><br>Enjoy!<span>');
+    a = replaceNormalFile(a, '<span data-itr="page_instructions_w"></span><br/>', '<span data-itr="page_instructions_w"></span><br/><span>Press <b>Q</b> to double split</span><br><span>Hold <b>W</b> to rapid fire mass</span><br><span>Press <b>M</b> to hide/show the minimap</span><br><span>Press <b>E</b> to split bots</span><br><span>Press <b>R</b> to eject some bots mass</span><br><span>Press <b>P</b> to make bots collect pellets</span><br><span>Creator: <bold>Bots</bold></span><br>Enjoy!<span>');
     a = replaceNormalFile(a, '<div id="tags-container">', '<div id="leaders" class="input-group" style="margin-top: 6px;"><span class="input-group-addon" style="width:75px"id="basic-addon1">BOARD</span><input id="leaderboard" type="text" value="" style="width:185px" readonly class="form-control"><button id="leaderboardcopy" class="btn btn-primary" style="float: right; width: 60px; border-radius: 0px 4px 4px 0px;" data-original-title="" title="">Copy</button></div><div class="input-group" style="margin-top: 6px;"><span class="input-group-addon" style="width:75px"id="basic-addon1">UUID</span><input id="uuid" type="text" value="' + 
     client_uuid + '" style="width:185px" readonly class="form-control"><button id="uuidcopy" class="btn btn-primary" style="float: right; width: 60px; border-radius: 0px 4px 4px 0px;" data-original-title="" title="">Copy</button></div><div class="input-group" style="margin-top: 6px;"><span class="input-group-addon" style="width:75px" id="basic-addon1">NAMES</span><input id="botnames" class="form-control" style="width:245px" placeholder="Separate bot names using commas" autofocus=""></div><div id="tags-container">');
     a = replaceNormalFile(a, "</body>", '<div style="display:block;position:absolute;z-index:100;pointer-events:none;right:9px;bottom:9px;"><canvas id="minimap"></div></body>');
@@ -1068,47 +1067,11 @@ skinHack.prototype = {
         window.MC._setNick = window.MC.setNick;
         window.MC.setNick = function() {
             var name = arguments[0];
-            if(name === "") {
-              this.playerName = "NanoBots.tk"
-              name = "NanoBots.tk";
-              console.log('Overriding');
-            } else {
-              this.playerName = name;
-            }
+            this.playerName = name;
             window.MC._setNick(name);
             
             this.updateSkin();
         }.bind(this);
-    },
-    checkSubscription: function() {
-        try {
-            if (localStorage.getItem('canUseScript')) {
-                this.canUseScript = JSON.parse(localStorage.getItem('canUseScript').toLowerCase());
-            } else {
-                localStorage.setItem('canUseScript', 'false');
-                return this.promptSubscription();
-            }
-            if (!this.canUseScript) {
-                return this.promptSubscription();
-            }
-            return this.canUseScript;
-        } catch (err) {
-            console.log(err);
-        }
-    },
-    promptSubscription: function() {
-        var ask = window.confirm("You must subscribe to NanoBots to use this Script");
-        if (ask) {
-            var win = window.open('https://www.youtube.com/channel/UCz6Eks57iD_iTv46NAfcnvg?sub_confirmation=1', '_blank');
-            if (win) {
-                localStorage.setItem('canUseScript', 'true');
-                this.canUseScript = true;
-                this.updateSkin();
-            } else {
-                alert('Please allow popups and refresh the page first!');
-            }
-        }
-        return this.canUseScript();
     },
     updateSkin: function() {
      
