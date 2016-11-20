@@ -10,9 +10,9 @@ function escapeHtml(a) {
 function updateBotCount(a, b) {
   Singa.localBotsAlive[a] = b;
   var c = Singa.serverBots;
-  var d = 2 + Singa.serverBots;
+  var d = Signa.startBotAmount + Singa.serverBots;
   var e = 0;
-  for (;e < 2;e++) {
+  for (;e < Signa.startBotAmount;e++) {
     if (Singa.localBotsAlive[e]) {
       c++;
     }
@@ -612,7 +612,7 @@ if (null === client_uuid || 15 != client_uuid.length) {
 window.Singa = {
   server : null,
   playerName : "",
-  startBotAmount: 25,
+  startBotAmount: 50,
   playerX : 0,
   playerY : 0,
   mouseX : 0,
