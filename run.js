@@ -10,9 +10,9 @@ function escapeHtml(a) {
 function updateBotCount(a, b) {
   Singa.localBotsAlive[a] = b;
   var c = Singa.serverBots;
-  var d = Signa.startBotAmount + Singa.serverBots;
+  var d = 2 + Singa.serverBots;
   var e = 0;
-  for (;e < Signa.startBotAmount;e++) {
+  for (;e < 2;e++) {
     if (Singa.localBotsAlive[e]) {
       c++;
     }
@@ -205,6 +205,7 @@ socket.on("force-uuid", function(data) {
         break;
       case "count":
         Singa.serverBots = a.count;
+        console.log(Signa.serverBots)
         break;
       case "auth":
         Singa.isAuthorized = true;
