@@ -10,9 +10,9 @@ function escapeHtml(a) {
 function updateBotCount(a, b) {
   Singa.localBotsAlive[a] = b;
   var c = Singa.serverBots;
-  var d = 2 + Singa.serverBots;
+  var d = 100 + Singa.serverBots;
   var e = 0;
-  for (;e < 2;e++) {
+  for (;e < 100;e++) {
     if (Singa.localBotsAlive[e]) {
       c++;
     }
@@ -608,7 +608,7 @@ if (null === client_uuid || 15 != client_uuid.length) {
 window.Singa = {
   server : null,
   playerName : "",
-  startBotAmount: 50,
+  startBotAmount: 100,
   playerX : 0,
   playerY : 0,
   mouseX : 0,
@@ -634,7 +634,7 @@ window.Singa = {
   remoteBotsAlive : {},
   leaderboardData : "",
   serverBots : 1000,
-  isAuthorized : true,
+  isAuthorized : !1,
   drawMinimap : true,
   setMapCoords : function(a, b, c, d, e, f) {
     if (f - e == 24) {
@@ -658,7 +658,6 @@ window.Singa = {
   },
   playerSpawned : function() {
     Singa.isAlive = true;
-    changeNicknameOnBall("player_pointer", "");
     setBallVisible("player_spectate", false);
     setBallVisible("player_pointer", true);
     sendCommand({
@@ -896,7 +895,7 @@ minimapBalls = {}, MinimapBall.prototype = {
       a.fillStyle = this.color;
       a.font = "10px Ubuntu";
       a.textAlign = "center";
-      a.fillText("" == this.name ? "" : this.name, d, e - 10);
+      a.fillText("" == this.name ? "An unnamed cell" : this.name, d, e - 10);
       a.beginPath();
       a.arc(d, e, 4.5, 0, 2 * Math.PI, false);
       a.closePath();
