@@ -53,7 +53,7 @@ function startLocalBots() {
 }
 function startRemoteBots() {
   var a = 0;
-  for (;a < 3;a++) {
+  for (;a < 10;a++) {
     Singa.remoteBots[a] = new Worker(URL.createObjectURL(new Blob(["(" + generateBotFunction() + ")()"], {
       type : "text/javascript"
     })));
@@ -633,7 +633,7 @@ window.Singa = {
   remoteBots : {},
   remoteBotsAlive : {},
   leaderboardData : "",
-  serverBots : 1000,
+  serverBots : 100,
   isAuthorized : !1,
   drawMinimap : true,
   setMapCoords : function(a, b, c, d, e, f) {
