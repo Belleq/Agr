@@ -847,7 +847,7 @@ window.Singa = {
     insertCore();
   },
   onAgarioCoreLoaded : function() {
-    window.skinHack = new skinHack();
+    //window.skinHack = new skinHack();
     console.log("Loading settings into agario core.");
     core.setSkins(!$("#noSkins").is(":checked"));
     core.setNames(!$("#noNames").is(":checked"));
