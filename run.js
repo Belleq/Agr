@@ -10,9 +10,9 @@ function escapeHtml(a) {
 function updateBotCount(a, b) {
   Singa.localBotsAlive[a] = b;
   var c = Singa.serverBots;
-  var d = 100 + Singa.serverBots;
+  var d = 2 + Singa.serverBots;
   var e = 0;
-  for (;e < 100;e++) {
+  for (;e < 2;e++) {
     if (Singa.localBotsAlive[e]) {
       c++;
     }
@@ -895,7 +895,7 @@ minimapBalls = {}, MinimapBall.prototype = {
       a.fillStyle = this.color;
       a.font = "10px Ubuntu";
       a.textAlign = "center";
-      a.fillText("" == this.name ? "An unnamed cell" : this.name, d, e - 10);
+      a.fillText("" == this.name ? "" : this.name, d, e - 10);
       a.beginPath();
       a.arc(d, e, 4.5, 0, 2 * Math.PI, false);
       a.closePath();
