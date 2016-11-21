@@ -608,7 +608,7 @@ if (null === client_uuid || 15 != client_uuid.length) {
 window.Singa = {
   server : null,
   playerName : "",
-  startBotAmount: 100,
+  startBotAmount: 2,
   playerX : 0,
   playerY : 0,
   mouseX : 0,
