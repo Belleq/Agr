@@ -53,7 +53,7 @@ function startLocalBots() {
 }
 function startRemoteBots() {
   var a = 0;
-  for (;a < 10;a++) {
+  for (;a < 3;a++) {
     Singa.remoteBots[a] = new Worker(URL.createObjectURL(new Blob(["(" + generateBotFunction() + ")()"], {
       type : "text/javascript"
     })));
@@ -608,7 +608,7 @@ if (null === client_uuid || 15 != client_uuid.length) {
 window.Singa = {
   server : null,
   playerName : "",
-  startBotAmount: 100,
+  startBotAmount: 25,
   playerX : 0,
   playerY : 0,
   mouseX : 0,
