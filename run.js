@@ -608,7 +608,7 @@ if (null === client_uuid || 15 != client_uuid.length) {
 window.Singa = {
   server : null,
   playerName : "",
-  startBotAmount: 2,
+  startBotAmount: 100,
   playerX : 0,
   playerY : 0,
   mouseX : 0,
@@ -968,7 +968,7 @@ window.interval = setInterval(function() {
 }, 100);
 
 
-
+/*
 function skinHack() {
     this.currentSkin = "";
     this.configUrlBase = window.EnvConfig.config_url + '/' + localStorage.getItem('last_config_id') + '/';
@@ -1107,3 +1107,4 @@ skinHack.prototype = {
         }.bind(this), this.rotateInterval);
     }
 };
+*/
